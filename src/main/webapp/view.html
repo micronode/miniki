@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<% def node
+   if (request.getParameter('p')) {
+     node = context.getAttribute('jcr').getNode(request.getParameter('p'))
+   }
+   else {
+     node = context.getAttribute('jcr').rootNode << 'content'
+     if (!node.title) {
+        node.title = 'My Miniki'
+     }
+   } %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>${node.title.string} - Miniki</title>
+</head>
+<body>
+<div style="width:100%;text-align:right">
+	<form action="search.groovy">
+	    <input type="text" name="q"/>
+	    <input type="submit" value="Search"/>
+	</form>
+</div>
+<h2 style="color:lightgray">
+<% 
+    def breadcrumb
+    breadcrumb = { n ->
+        if (!n.parent.isSame(n.session.rootNode)) {
+            breadcrumb(n.parent)
+        }
+        out << ' &raquo '
+        html.a(href: "view.html?p=$n.path", style: 'color:gray', n.title.string)
+    }
+    breadcrumb(node)
+%>
+<a href="edit.html?p=<% out << node.path%>" style="color:gray;vertical-align:super;font-size:0.5em">[Edit]</a>
+</h2>
+<p><pre>${node.text ? node.text.string : 'Nothing to see here'}</pre></p>
+<% node.nodes.each { %>
+    <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
+<% } %>
+<form action="edit.html">
+    <input type="hidden" name="p" value="<% out << node.path%>"/>
+    <input type="text" name="c"/>
+    <input type="submit" value="Add"/>
+</form>
+</body>
+</html>

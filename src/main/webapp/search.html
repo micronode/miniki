@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Search - Miniki</title>
+</head>
+<body>
+<div style="width:100%;text-align:right">
+    <form action="search.groovy">
+        <input type="text" name="q"/>
+        <input type="submit" value="Search"/>
+    </form>
+</div>
+<% 
+    if (request.getAttribute('query')) {
+        request.getAttribute('query').execute().nodes.each { %>
+        <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
+<% }} %>
+
+</body>
+</html>
