@@ -12,6 +12,17 @@ if (request.getParameter('q')) {
         )
     }
     request.setAttribute('query', searchQuery)
+    
+    def attachSearchQuery = new QueryBuilder(jcr.workspace.queryManager, jcr.valueFactory).with {
+        query(
+                source: selector(nodeType: 'nt:unstructured', name: 'items'),
+                constraint: and(
+                        constraint1: descendantNode(selectorName: 'items', path: '/attachments'),
+                        constraint2: fullTextSearch(selectorName: 'items', propertyName: 'jcr:content', searchTerms: request.getParameter('q'))
+                        )
+                )
+    }
+    request.setAttribute('attachQuery', attachSearchQuery)
 }
 
 request.getRequestDispatcher("search.html").forward(request, response)

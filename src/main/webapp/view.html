@@ -36,13 +36,33 @@
 <a href="edit.html?p=<% out << node.path%>" style="color:gray;vertical-align:super;font-size:0.5em">[Edit]</a>
 </h2>
 <p><pre>${node.text ? node.text.string : 'Nothing to see here'}</pre></p>
-<% node.nodes.each { %>
-    <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
-<% } %>
+<% node.nodes.each {
+    if (it.name != 'attachments') { %>
+        <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
+<% }
+    else { %>
+    <ul>
+    <%
+        it.properties.each { p ->
+            if (p.type == 9) { %>
+    <li><a href='download.groovy?p=<% out << p.getNode().path%>&f=<% out << p.name %>'>${p.name}</a></li>
+<%
+        }
+      }
+      %>
+      </ul>
+      <%
+    }
+  } %>
 <form action="edit.html">
     <input type="hidden" name="p" value="<% out << node.path%>"/>
     <input type="text" name="c"/>
     <input type="submit" value="Add"/>
+</form>
+<form action="attach.groovy" enctype="multipart/form-data" method="post">
+    <input type="hidden" name="p" value="<% out << node.path%>"/>
+    <input type="file" name="datafile" size="40">
+    <input type="submit" value="Attach"/>
 </form>
 </body>
 </html>

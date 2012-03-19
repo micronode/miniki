@@ -16,6 +16,11 @@
         request.getAttribute('query').execute().nodes.each { %>
         <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
 <% }} %>
+<% 
+    if (request.getAttribute('attachQuery')) {
+        request.getAttribute('attachQuery').execute().nodes.each { %>
+        <a href='download.groovy?p=<% out << it.path%>&f=<% out << it.title.string %>'>${it.title.string}</a>
+<% }} %>
 
 </body>
 </html>
