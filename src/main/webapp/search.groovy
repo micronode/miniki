@@ -6,7 +6,7 @@ if (request.getParameter('q')) {
         query(
             source: selector(nodeType: 'nt:unstructured', name: 'items'),
             constraint: and(
-                constraint1: descendantNode(selectorName: 'items', path: '/content'),
+                constraint1: descendantNode(selectorName: 'items', path: '/mn:content'),
                 constraint2: fullTextSearch(selectorName: 'items', propertyName: 'text', searchTerms: request.getParameter('q'))
             )
         )
@@ -17,7 +17,7 @@ if (request.getParameter('q')) {
         query(
                 source: selector(nodeType: 'nt:unstructured', name: 'items'),
                 constraint: and(
-                        constraint1: descendantNode(selectorName: 'items', path: '/attachments'),
+                        constraint1: descendantNode(selectorName: 'items', path: '/mn:attachments'),
                         constraint2: fullTextSearch(selectorName: 'items', propertyName: 'jcr:content', searchTerms: request.getParameter('q'))
                         )
                 )

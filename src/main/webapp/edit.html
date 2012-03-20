@@ -43,9 +43,11 @@
     <input type="submit" value="Save">
     <a href='view.html?p=<% out << node.path%>'>Cancel</a>
 </form>
-<% node.nodes.each { %>
-    <a href='view.html?p=<% out << it.path%>'>${it.name}</a>
-<% } %>
+<% node.nodes.each {
+    if (it.name != 'mn:attachments') { %>
+        <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
+<% }
+  } %>
 
 </body>
 </html>

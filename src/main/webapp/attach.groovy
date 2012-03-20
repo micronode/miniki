@@ -34,7 +34,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
             }
             def checksum = new String(Hex.encodeHex(digest.digest()))
             
-            def attachNode = node.session.rootNode << 'attachments'
+            def attachNode = node.session.rootNode << 'mn:attachments'
             checksum.split(/(?<=\G.{2})/).each {
                 attachNode = attachNode << it
             }
@@ -49,7 +49,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
             
             if (node) {
                 node.session.save {
-                    def attachments = node << 'attachments'
+                    def attachments = node << 'mn:attachments'
                     attachments[item.name] = attachNode
                 }
 //                    attachments = node.attachments.values as List

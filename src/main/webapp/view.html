@@ -5,7 +5,7 @@
      node = context.getAttribute('jcr').getNode(request.getParameter('p'))
    }
    else {
-     node = context.getAttribute('jcr').rootNode << 'content'
+     node = context.getAttribute('jcr').rootNode << 'mn:content'
      if (!node.title) {
         node.title = 'My Miniki'
      }
@@ -37,7 +37,7 @@
 </h2>
 <p><pre>${node.text ? node.text.string : 'Nothing to see here'}</pre></p>
 <% node.nodes.each {
-    if (it.name != 'attachments') { %>
+    if (it.name != 'mn:attachments') { %>
         <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
 <% }
     else { %>
