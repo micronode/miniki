@@ -7,7 +7,7 @@ if (request.getParameter('q')) {
             source: selector(nodeType: 'nt:unstructured', name: 'items'),
             constraint: and(
                 constraint1: descendantNode(selectorName: 'items', path: '/mn:content'),
-                constraint2: fullTextSearch(selectorName: 'items', propertyName: 'text', searchTerms: request.getParameter('q'))
+                constraint2: fullTextSearch(selectorName: 'items', propertyName: 'mn:text', searchTerms: request.getParameter('q'))
             )
         )
     }
@@ -25,4 +25,4 @@ if (request.getParameter('q')) {
     request.setAttribute('attachQuery', attachSearchQuery)
 }
 
-request.getRequestDispatcher("search.html").forward(request, response)
+forward("search.html")

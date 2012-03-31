@@ -5,21 +5,16 @@
 <title>Search - Miniki</title>
 </head>
 <body>
-<div style="width:100%;text-align:right">
-    <form action="search.groovy">
-        <input type="text" name="q"/>
-        <input type="submit" value="Search"/>
-    </form>
-</div>
+<% include '/WEB-INF/includes/search.gtpl' %>
 <% 
     if (request.getAttribute('query')) {
         request.getAttribute('query').execute().nodes.each { %>
-        <a href='view.html?p=<% out << it.path%>'>${it.title.string}</a>
+        <a href='view<%= it.path%>'>${it['mn:title'].string}</a>
 <% }} %>
 <% 
     if (request.getAttribute('attachQuery')) {
         request.getAttribute('attachQuery').execute().nodes.each { %>
-        <a href='download.groovy?p=<% out << it.path%>&f=<% out << it.title.string %>'>${it.title.string}</a>
+        <a href='download.groovy?p=<%= it.path%>&f=<%= it['mn:title'].string %>'>${it['mn:title'].string}</a>
 <% }} %>
 
 </body>

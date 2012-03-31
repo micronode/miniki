@@ -7,7 +7,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload
 
 if (request.method != 'POST') {
-    request.getRequestDispatcher("view.html").forward(request, response)
+    forward("view.html")
 }
 
 if (ServletFileUpload.isMultipartContent(request)) {
@@ -19,7 +19,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
     while (items.hasNext()) {
         def item = items.next()
         if (item.formField && item.fieldName == 'p') {
-            node = context.getAttribute('jcr').getNode(item.openStream().text)
+            node = context.jcr.getNode(item.openStream().text)
         }
         else {
             def digest = MessageDigest.getInstance('md5')
@@ -65,5 +65,5 @@ if (ServletFileUpload.isMultipartContent(request)) {
             }
         }
     }
-    response.sendRedirect("view.html?p=$node.path")
+    redirect("view.html?p=$node.path")
 }
