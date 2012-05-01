@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<% def node = request.getAttribute('mn:node') %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
+<title>${node['mn:title'].string} - Miniki</title>
+</head>
+<body>
+<div class="wrapper">
+<% include '/WEB-INF/includes/header.gtpl' %>
+<form action="/save.groovy" method="post">
+    <input type="hidden" name="p" value="<%= node.path%>"/>
+    <input type="text" name="mn:title" value="<%= node['mn:title']?.string %>"/><br/>
+    <textarea rows="4" cols="20" name="mn:text">${node['mn:text']?.string}</textarea><br/>
+    <input type="submit" value="Save">
+    <a href='/view<%= node.path - /mn:content\// - /mn:content/%>'>Cancel</a>
+</form>
+<% node.nodes.each {
+    if (it.name != 'mn:attachments') { %>
+        <a href='/view<%= it.path - /mn:content\// - /mn:content/ %>'>${it['mn:title'].string}</a>
+<% }
+  } %>
+
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
+</body>
+</html>

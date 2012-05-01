@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<% def node = request.getAttribute('mn:node') %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
+<title>${node['mn:title'].string} - Miniki</title>
+</head>
+<body>
+<div class="wrapper">
+<% include '/WEB-INF/includes/header.gtpl' %>
+<div style="padding-left:40px">
+<pre>${node['mn:text'] ? wiki2html(node['mn:text'].string) : 'Nothing to see here'}</pre>
+
+<% node.nodes.each {
+    if (it.name != 'mn:attachments') { %>
+        <a href='/view<%= (it.path - /mn:content\// - /mn:content/)%>'>${it['mn:title'].string}</a>
+<% }
+    else { %>
+    <ul>
+    <%
+        it.properties.each { p ->
+            if (p.type == 9) { %>
+    <li>
+        <a href='/download.groovy?p=<%= p.getNode().path%>&f=<%= p.name %>'>${p.name}</a>
+        ${org.apache.commons.io.FileUtils.byteCountToDisplaySize(p.getNode()['jcr:content'].binary.size)}
+    </li>
+<%
+        }
+      }
+      %>
+      </ul>
+      <%
+    }
+  } %>
+</div>
+<form action="/edit.html">
+    <input type="hidden" name="p" value="<%= node.path%>"/>
+    <input type="text" name="c"/>
+    <input type="submit" value="Add"/>
+</form>
+<form action="/attach.groovy" enctype="multipart/form-data" method="post">
+    <input type="hidden" name="p" value="<%= node.path%>"/>
+    <input type="file" name="datafile" size="40">
+    <input type="submit" value="Attach"/>
+</form>
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
+</body>
+</html>

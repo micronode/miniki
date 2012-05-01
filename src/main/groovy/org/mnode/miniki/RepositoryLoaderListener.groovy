@@ -17,8 +17,8 @@ class RepositoryLoaderListener implements ServletContextListener {
     
     void contextInitialized(ServletContextEvent e) {
         File homeDir = [System.getProperty('miniki.home', System.getProperty('user.home') + '/.miniki')]
+        homeDir.mkdirs()
         log.info "Miniki home: [$homeDir.absolutePath]"
-//        new File(homeDir, "logs").mkdirs()
         def configFile = new File(homeDir, "config.xml")
         configFile.text = RepositoryLoaderListener.getResourceAsStream("/config-persist.xml").text
         

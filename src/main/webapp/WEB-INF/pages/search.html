@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
+<title>Search - Miniki</title>
+</head>
+<body>
+<div class="wrapper">
+<% include '/WEB-INF/includes/search.gtpl' %>
+<% 
+    if (request.getAttribute('query')) {
+        request.getAttribute('query').execute().nodes.each { %>
+        <a href='view<%= it.path%>'>${it['mn:title'].string}</a>
+<% }} %>
+<% 
+    if (request.getAttribute('attachQuery')) {
+        request.getAttribute('attachQuery').execute().nodes.each { %>
+        <a href='download.groovy?p=<%= it.path%>&f=<%= it['mn:title'].string %>'>${it['mn:title'].string}</a>
+<% }} %>
+
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
+</body>
+</html>
