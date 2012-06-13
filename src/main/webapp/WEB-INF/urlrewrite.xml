@@ -21,7 +21,7 @@
 
     <rule>
         <from>/(view|edit|history)/(.*)</from>
-        <to>%{context-path}/$1.html?p=/mn:content/$2</to>
+        <to>%{context-path}/$1.groovy?p=/mn:content/$2</to>
     </rule>
 
     <outbound-rule>

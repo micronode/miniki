@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/layout.css" />
+<link rel="stylesheet" href="/style.css" />
 <title>${node['mn:title'].string} - Miniki</title>
 </head>
 <body>
@@ -13,23 +14,28 @@
 <pre>${node['mn:text'] ? wiki2html(node['mn:text'].string) : 'Nothing to see here'}</pre>
 
 <% node.nodes.each {
-    if (it.name != 'mn:attachments') { %>
+    if (it.name != 'mn:attachments') {
+        out << miniki.links.view(it)
+ %>
+ <!-- 
         <a href='/view<%= (it.path - /mn:content\// - /mn:content/)%>'>${it['mn:title'].string}</a>
+         -->
 <% }
     else { %>
-    <ul>
+    <table><tbody>
     <%
         it.properties.each { p ->
             if (p.type == 9) { %>
-    <li>
-        <a href='/download.groovy?p=<%= p.getNode().path%>&f=<%= p.name %>'>${p.name}</a>
-        ${org.apache.commons.io.FileUtils.byteCountToDisplaySize(p.getNode()['jcr:content'].binary.size)}
-    </li>
+    <tr>
+        <td><a href='/download.groovy?p=<%= p.getNode().path%>&f=<%= p.name %>'>${p.name}</a></td>
+        <td>${p.getNode().getNode('jcr:content')['jcr:mimeType']?.string}</td>
+        <td>${attachment.binarySize(p.getNode())}</td>
+    </tr>
 <%
         }
       }
       %>
-      </ul>
+      </tbody></table>
       <%
     }
   } %>

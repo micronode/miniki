@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/layout.css" />
+<link rel="stylesheet" href="/style.css" />
 <title>${node['mn:title'].string} - Miniki</title>
 </head>
 <body>
@@ -12,13 +13,13 @@
 <form action="/save.groovy" method="post">
     <input type="hidden" name="p" value="<%= node.path%>"/>
     <input type="text" name="mn:title" value="<%= node['mn:title']?.string %>"/><br/>
-    <textarea rows="4" cols="20" name="mn:text">${node['mn:text']?.string}</textarea><br/>
+    <textarea rows="20" cols="80" name="mn:text">${node['mn:text']?.string}</textarea><br/>
     <input type="submit" value="Save">
-    <a href='/view<%= node.path - /mn:content\// - /mn:content/%>'>Cancel</a>
+    ${miniki.links.view(node, 'Cancel')}
 </form>
 <% node.nodes.each {
     if (it.name != 'mn:attachments') { %>
-        <a href='/view<%= it.path - /mn:content\// - /mn:content/ %>'>${it['mn:title'].string}</a>
+        ${miniki.links.view(it)}
 <% }
   } %>
 

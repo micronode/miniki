@@ -21,10 +21,24 @@ class RepositoryFilter implements Filter {
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
     ServletException {
 
+        def findNodePath
+        findNodePath = { jcr, path, remainder = '' ->
+            if (!path || jcr.itemExists(path)) {
+                return [path: path, remainder: remainder]
+            }
+            else {
+                def pathSplit = path.split('/')
+                findNodePath(jcr, pathSplit[0..-2].join('/'), remainder ? "${pathSplit[-1]}/$remainder"  as String : pathSplit[-1])
+            }
+        }
+        
         request.with {
             def node
-            if (getParameter('p') && servletContext.getAttribute('jcr').itemExists(getParameter('p'))) {
-                node = servletContext.getAttribute('jcr').getNode(getParameter('p'))
+            def nodePath = findNodePath(servletContext.getAttribute('jcr'), getParameter('p'))
+            if (nodePath.path) {
+//            if (getParameter('p') && servletContext.getAttribute('jcr').itemExists(getParameter('p'))) {
+                node = servletContext.getAttribute('jcr').getNode(nodePath.path)
+                setAttribute 'mn:attachment', nodePath.remainder
             }
             else {
                 node = servletContext.getAttribute('jcr').rootNode << 'mn:content'

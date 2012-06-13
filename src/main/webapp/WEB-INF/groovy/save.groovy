@@ -18,6 +18,6 @@ if (request.getParameter('p')) {
         }
     }
 //    node.checkin()
+    redirect "view${node.path - /mn:content\//}/"
 }
-
-forward("view.html")
+forward 'view.html'
