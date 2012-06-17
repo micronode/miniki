@@ -28,3 +28,6 @@ appender("FILE", RollingFileAppender) {
 }
 
 root(Level.INFO, ["CONSOLE", "FILE"])
+//logger('org.apache.jackrabbit', Level.DEBUG)
+//logger('org.apache.tika', Level.DEBUG)
+logger('org.mnode.miniki', Level.DEBUG)

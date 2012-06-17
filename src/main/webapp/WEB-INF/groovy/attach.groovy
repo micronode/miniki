@@ -35,15 +35,25 @@ if (ServletFileUpload.isMultipartContent(request)) {
             def checksum = new String(Hex.encodeHex(digest.digest()))
             
             def attachNode = node.session.rootNode << 'mn:attachments'
-            checksum.split(/(?<=\G.{2})/).each {
+            def attachPath = checksum.split(/(?<=\G.{2})/)
+            attachPath[0..-1].each {
                 attachNode = attachNode << it
             }
-            if (attachNode.isNew()) {
+            if (attachNode[attachPath[-1]]) {
+                attachNode = attachNode[attachPath[-1]]
+            }
+//            if (attachNode.isNew()) {
+            else {
+                attachNode = attachNode.addNode(attachPath[-1], 'nt:file')
 //                println "Creating node: $attachNode.path"
                 attachNode.addMixin('mix:referenceable')
                 attachNode.session.save {
 //                    attachNode['jcr:content'] = attachNode.session.valueFactory.createBinary(item.openStream())
-                    attachNode['jcr:content'] = binary
+                    def resource = attachNode.addNode('jcr:content', 'nt:resource')
+                    resource['jcr:data'] = binary
+//                    println "mimetype=$item.contentType"
+                    resource['jcr:mimeType'] = item.contentType
+                    resource['jcr:lastModified'] = Calendar.instance
                 }
             }
             
@@ -65,5 +75,5 @@ if (ServletFileUpload.isMultipartContent(request)) {
             }
         }
     }
-    redirect("view.html?p=$node.path")
+    redirect("view${node.path - /mn:content\// - /mn:content/}")
 }

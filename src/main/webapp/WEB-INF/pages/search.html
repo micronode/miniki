@@ -2,20 +2,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
 <title>Search - Miniki</title>
+<style type="text/css">
+strong {color:red}
+</style>
 </head>
 <body>
+<div class="wrapper">
+<a href="/view/">Home</a>
 <% include '/WEB-INF/includes/search.gtpl' %>
+<h2>Search Results: ${request.getParameter('q')}</h2>
+<p>Query: ${request.getAttribute('query')?.statement}</p>
+<%
+        def results = request.getAttribute('query')?.execute().rows
+        if (results) {
+         results.each {
+            if (it.path ==~ /\/mn:attachments\/.*/) { %>
+	           <a href='download.groovy?p=${it.node.parent.path}&f=${it.node.parent.references[0].name}'>${it.node.parent.references[0].name}</a>
+	        <% } else { %>
+               <a href='view<%= (it.path - /mn:content\// - /mn:content/)%>'>${it.node['mn:title']?.string}</a>
+	        <% } %>
+	        ${it.score}
+	        <ul>
+	            <li>${it.getValue('rep:excerpt(.)')?.string}</li>
+	        </ul>
+	   <% }} else { %>
+	      No results. 
+<% } %>
+<p>Attach Query: ${request.getAttribute('attachQuery')?.statement}</p>
 <% 
-    if (request.getAttribute('query')) {
-        request.getAttribute('query').execute().nodes.each { %>
-        <a href='view<%= it.path%>'>${it['mn:title'].string}</a>
-<% }} %>
-<% 
-    if (request.getAttribute('attachQuery')) {
-        request.getAttribute('attachQuery').execute().nodes.each { %>
-        <a href='download.groovy?p=<%= it.path%>&f=<%= it['mn:title'].string %>'>${it['mn:title'].string}</a>
-<% }} %>
+        def attachResults = request.getAttribute('attachQuery')?.execute().rows
+        if (attachResults) {
+            attachResults.each { %>
+	        <a href='download.groovy?p=<%= (it.path - /mn:content\// - /mn:content/)%>&f=<%= it.node.name %>'>${it.node.name}</a>
+	        ${it.score}
+	      <% }} else { %>
+          No attachment results. 
+<% } %>
 
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
 </body>
 </html>
