@@ -13,9 +13,11 @@ import org.apache.jackrabbit.util.Text;
 
 class RepositoryFilter implements Filter {
 
+    def jcr
+
     void init(FilterConfig config) throws ServletException {
         // TODO Auto-generated method stub
-
+        jcr = config.servletContext.getAttribute('jcr')
     }
 
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
@@ -34,14 +36,14 @@ class RepositoryFilter implements Filter {
         
         request.with {
             def node
-            def nodePath = findNodePath(servletContext.getAttribute('jcr'), getParameter('p'))
+            def nodePath = findNodePath(jcr, getParameter('p'))
             if (nodePath.path) {
-//            if (getParameter('p') && servletContext.getAttribute('jcr').itemExists(getParameter('p'))) {
-                node = servletContext.getAttribute('jcr').getNode(nodePath.path)
+//            if (getParameter('p') && jcr.itemExists(getParameter('p'))) {
+                node = jcr.getNode(nodePath.path)
                 setAttribute 'mn:attachment', nodePath.remainder
             }
             else {
-                node = servletContext.getAttribute('jcr').rootNode << 'mn:content'
+                node = jcr.rootNode << 'mn:content'
                 node.session.save {
 //                    node.addMixin("mix:versionable")
                     if (!node['mn:title']) {
@@ -88,3 +90,4 @@ class RepositoryFilter implements Filter {
 
     }
 }
+
