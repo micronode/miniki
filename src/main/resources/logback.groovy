@@ -11,6 +11,7 @@ appender("CONSOLE", ConsoleAppender) {
     }
 }
 
+if (!(hostname =~ /cloudbees/)) {
 appender("FILE", RollingFileAppender) {
     file = "${System.getProperty('user.home')}/.miniki/logs/miniki.log"
     append = true
@@ -26,7 +27,7 @@ appender("FILE", RollingFileAppender) {
         maxFileSize = '100KB'
     }
 }
-
+}
 root(Level.INFO, ["CONSOLE", "FILE"])
 //logger('org.apache.jackrabbit', Level.DEBUG)
 //logger('org.apache.tika', Level.DEBUG)
