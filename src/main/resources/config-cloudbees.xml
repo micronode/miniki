@@ -36,6 +36,7 @@
 <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
   <param name="driver" value="javax.naming.InitialContext"/>
   <param name="url" value="java:comp/env/jdbc/miniki"/>
+  <param name="schema" value="mysql"/>
 </FileSystem>
 
     <!--
