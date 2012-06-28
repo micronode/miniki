@@ -25,19 +25,19 @@ class RepositoryFilter implements Filter {
 
         def findNodePath
         def jcr = config.servletContext.getAttribute('jcr')
-        findNodePath = { jcr, path, remainder = '' ->
+        findNodePath = { path, remainder = '' ->
             if (!path || jcr.itemExists(path)) {
                 return [path: path, remainder: remainder]
             }
             else {
                 def pathSplit = path.split('/')
-                findNodePath(jcr, pathSplit[0..-2].join('/'), remainder ? "${pathSplit[-1]}/$remainder"  as String : pathSplit[-1])
+                findNodePath(pathSplit[0..-2].join('/'), remainder ? "${pathSplit[-1]}/$remainder"  as String : pathSplit[-1])
             }
         }
         
         request.with {
             def node
-            def nodePath = findNodePath(jcr, getParameter('p'))
+            def nodePath = findNodePath(getParameter('p'))
             if (nodePath.path) {
 //            if (getParameter('p') && jcr.itemExists(getParameter('p'))) {
                 node = jcr.getNode(nodePath.path)
