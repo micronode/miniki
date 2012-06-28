@@ -13,17 +13,18 @@ import org.apache.jackrabbit.util.Text;
 
 class RepositoryFilter implements Filter {
 
-    def jcr
+    def config
 
     void init(FilterConfig config) throws ServletException {
         // TODO Auto-generated method stub
-        jcr = config.servletContext.getAttribute('jcr')
+        this.config = config
     }
 
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
     ServletException {
 
         def findNodePath
+        def jcr = config.servletContext.getAttribute('jcr')
         findNodePath = { jcr, path, remainder = '' ->
             if (!path || jcr.itemExists(path)) {
                 return [path: path, remainder: remainder]
