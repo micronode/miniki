@@ -11,6 +11,7 @@ appender("CONSOLE", ConsoleAppender) {
     }
 }
 
+println "*** Application host: $hostname ***"
 if (!(hostname =~ /cloudbees/)) {
 appender("FILE", RollingFileAppender) {
     file = "${System.getProperty('user.home')}/.miniki/logs/miniki.log"
