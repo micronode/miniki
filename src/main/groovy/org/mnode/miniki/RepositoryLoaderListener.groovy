@@ -20,7 +20,7 @@ class RepositoryLoaderListener implements ServletContextListener {
         homeDir.mkdirs()
         log.info "Miniki home: [$homeDir.absolutePath]"
         def configFile = new File(homeDir, "config.xml")
-        configFile.text = RepositoryLoaderListener.getResourceAsStream("/config-persist.xml").text
+        configFile.text = RepositoryLoaderListener.getResourceAsStream("/config-cloudbees.xml").text
         
         File repositoryLocation = [homeDir, "data"]
         
