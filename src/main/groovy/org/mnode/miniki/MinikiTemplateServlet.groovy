@@ -23,7 +23,8 @@ class MinikiTemplateServlet extends TemplateServlet {
             if(file.exists()){
                 return file.text
             }
-            InputStream is = Thread.currentThread().contextClassLoader.getResourceAsStream(path)
+            //InputStream is = Thread.currentThread().contextClassLoader.getResourceAsStream(path)
+            InputStream is = getClass().getResourceAsStream(path)
             if(!is) return ""
             is.text
         }
