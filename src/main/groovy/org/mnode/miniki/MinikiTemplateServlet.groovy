@@ -53,6 +53,7 @@ class MinikiTemplateServlet extends TemplateServlet {
         File extensionsFile = [binding.context.getResource('/WEB-INF/extensions.groovy').toURI()]
         if (!extensionsLastModified || extensionsFile.lastModified() > extensionsLastModified) {
             extensionScript = extensionsFile.text
+            extensionsLastModified = extensionsFile.lastModified()
         }
         } catch (Exception e) {
             extensionScript = binding.context.getResourceAsStream('/WEB-INF/extensions.groovy')?.text
@@ -62,7 +63,6 @@ class MinikiTemplateServlet extends TemplateServlet {
             ConfigSlurper extensionLoader = []
 //            extensions = extensions.merge(extensionLoader.parse(extensionScript))
             extensions = extensionLoader.parse(extensionScript)
-            extensionsLastModified = extensionsFile.lastModified()
 //                extensions[extension] = extensionConfig
             StringWriter extensionsOut = []
             extensions.writeTo(extensionsOut)
