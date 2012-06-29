@@ -55,7 +55,7 @@ class MinikiTemplateServlet extends TemplateServlet {
             extensionScript = extensionsFile.text
         }
         } catch (Exception e) {
-            extensionScript = defaultScriptContentLoader('/WEB-INF/extensions.groovy')
+            extensionScript = binding.context.getResourceAsStream('/WEB-INF/extensions.groovy')?.text
         }
         if (extensionScript) {
             log.debug "Extension Script: $extensionScript"
