@@ -26,7 +26,7 @@
  <param name="url" value="jdbc:cloudbees://miniki" />
 </resource>
 
-<Resource name="jcr/miniki"
+<resource name="jcr/miniki"
           auth="Container"
           type="javax.jcr.Repository"
           factory="org.apache.jackrabbit.core.jndi.BindableRepositoryFactory"
