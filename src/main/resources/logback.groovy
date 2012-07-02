@@ -12,7 +12,7 @@ appender("CONSOLE", ConsoleAppender) {
 }
 
 println "*** Application host: $hostname ***"
-if (!(hostname =~ /cloudbees/)) {
+if (!(hostname =~ /compute/)) {
 appender("FILE", RollingFileAppender) {
     file = "${System.getProperty('user.home')}/.miniki/logs/miniki.log"
     append = true
