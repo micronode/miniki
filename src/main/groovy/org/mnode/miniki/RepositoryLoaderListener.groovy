@@ -17,18 +17,19 @@ class RepositoryLoaderListener implements ServletContextListener {
     
     void contextInitialized(ServletContextEvent e) {
         File homeDir = [System.getProperty('miniki.home', System.getProperty('user.home') + '/.miniki')]
-        homeDir.mkdirs()
+        //homeDir.mkdirs()
         log.info "Miniki home: [$homeDir.absolutePath]"
         def configFile = new File(homeDir, "config.xml")
-        configFile.text = RepositoryLoaderListener.getResourceAsStream("/config-cloudbees.xml").text
+        //configFile.text = RepositoryLoaderListener.getResourceAsStream("/config-cloudbees.xml").text
         
         File repositoryLocation = [homeDir, "data"]
         
-        RegistryHelper.registerRepository(context, 'miniki', configFile.absolutePath,
-             repositoryLocation.absolutePath, false)
+        //RegistryHelper.registerRepository(context, 'miniki', configFile.absolutePath,
+        //     repositoryLocation.absolutePath, false)
         
         def context = new InitialContext()
-        def repository = context.lookup('miniki')
+        //def repository = context.lookup('miniki')
+        def repository = context.lookup('java:comp/env/jcr/miniki')
         def session = repository.login(new SimpleCredentials('readonly', ''.toCharArray()))
         e.servletContext.setAttribute('jcr', session)
         
@@ -41,6 +42,6 @@ class RepositoryLoaderListener implements ServletContextListener {
     }
     
     void contextDestroyed(ServletContextEvent e) {
-        RegistryHelper.unregisterRepository(context, 'miniki')
+        //RegistryHelper.unregisterRepository(context, 'miniki')
     }
 }
