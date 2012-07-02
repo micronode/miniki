@@ -25,5 +25,12 @@
  <param name="password" value="!9303385a" />
  <param name="url" value="jdbc:cloudbees://miniki" />
 </resource>
+
+<Resource name="jcr/miniki"
+          auth="Container"
+          type="javax.jcr.Repository"
+          factory="org.apache.jackrabbit.core.jndi.BindableRepositoryFactory"
+          configFilePath="WEB-INF/classes/config-cloudbees.xml"
+          repHomeDir="/tmp/miniki"/>
 </cloudbees-web-app>
 
