@@ -30,7 +30,7 @@
           auth="Container"
           type="javax.jcr.Repository"
           factory="org.apache.jackrabbit.core.jndi.BindableRepositoryFactory"
-          configFilePath="WEB-INF/classes/config-cloudbees.xml"
+          configFilePath="/var/genapp/apps/676d76af/staxcat/install/webapp.war/WEB-INF/classes/config-cloudbees.xml"
           repHomeDir="/tmp/miniki"/>
 </cloudbees-web-app>
 
