@@ -12,6 +12,14 @@
 
     <rule>
         <note>
+            Redirect for the homepage
+        </note>
+        <from>^/$</from>
+        <to type="redirect">%{context-path}/view/</to>
+    </rule>
+    
+    <rule>
+        <note>
             The rule means that requests to /test/status/ will be redirected to /rewrite-status
             the url will be rewritten.
         </note>
