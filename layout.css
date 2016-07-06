@@ -7,8 +7,13 @@ body {
 }
 
 .starter-template input {
+  margin-top: 150px;
   font-size: 2em;
   padding: 10px;
   border: 10px solid rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  border-radius: 15px 25px;
+}
+
+.starter-template input:focus{
+    outline: none;
 }
