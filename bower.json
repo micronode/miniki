@@ -1,0 +1,8 @@
+{
+  "name": "miniki",
+  "dependencies": {
+    "bootstrap":"3.3.6",
+    "react": "15.2.0",
+    "react-bootstrap": "0.29.5"
+  }
+}
