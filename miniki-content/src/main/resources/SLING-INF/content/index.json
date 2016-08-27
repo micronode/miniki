@@ -1,0 +1,6 @@
+{
+  "title":"miniki.org",
+  "description": "A simple way to create a powerful knowledge base",
+  "sling:resourceType":"miniki/page/index",
+  "jcr:primaryType":"nt:unstructured"
+}

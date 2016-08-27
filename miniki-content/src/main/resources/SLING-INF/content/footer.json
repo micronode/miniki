@@ -1,0 +1,6 @@
+{
+  "title":"miniki.org",
+  "sling:resourceType":"miniki/footer",
+  "jcr:primaryType":"nt:unstructured",
+  "copyright": "2016 Micronode, Inc."
+}
