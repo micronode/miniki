@@ -1,0 +1,3 @@
+include 'miniki-app'
+include 'miniki-content'
+//include 'miniki-api'
