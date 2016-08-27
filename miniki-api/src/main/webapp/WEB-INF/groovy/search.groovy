@@ -1,7 +1,4 @@
-import javax.jcr.query.Query;
-import javax.jcr.query.qom.Column;
-
-import org.mnode.juicer.query.QueryBuilder
+import javax.jcr.query.Query
 
 if (request.getParameter('q')) {
     def jcr = context.getAttribute('jcr')

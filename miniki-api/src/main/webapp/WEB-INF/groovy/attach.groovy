@@ -1,10 +1,8 @@
-import java.security.MessageDigest;
-
-import javax.jcr.Value;
-
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.codec.binary.Hex
+import org.apache.commons.fileupload.disk.DiskFileItemFactory
 import org.apache.commons.fileupload.servlet.ServletFileUpload
+
+import java.security.MessageDigest
 
 if (request.method != 'POST') {
     forward("view.html")

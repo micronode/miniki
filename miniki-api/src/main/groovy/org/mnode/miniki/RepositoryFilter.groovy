@@ -1,15 +1,8 @@
 package org.mnode.miniki
 
-import java.io.IOException;
+import org.apache.jackrabbit.util.Text
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-
-import org.apache.jackrabbit.util.Text;
+import javax.servlet.*
 
 class RepositoryFilter implements Filter {
 

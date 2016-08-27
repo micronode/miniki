@@ -1,9 +1,8 @@
 package org.mnode.miniki
 
-import groovy.servlet.ServletBinding;
+import groovy.servlet.ServletBinding
 import groovy.servlet.TemplateServlet
-import groovy.util.logging.Slf4j;
-
+import groovy.util.logging.Slf4j
 
 @Slf4j
 class MinikiTemplateServlet extends TemplateServlet {

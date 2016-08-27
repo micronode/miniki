@@ -1,7 +1,5 @@
-import java.net.InetAddress
-
-import org.apache.commons.io.FileUtils;
-import org.eclipse.mylyn.wikitext.confluence.core.ConfluenceLanguage;
+import org.apache.commons.io.FileUtils
+import org.eclipse.mylyn.wikitext.confluence.core.ConfluenceLanguage
 import org.eclipse.mylyn.wikitext.core.parser.MarkupParser
 import org.eclipse.mylyn.wikitext.core.parser.builder.HtmlDocumentBuilder
 

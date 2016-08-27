@@ -1,5 +1,3 @@
-import org.apache.jackrabbit.util.Text;
-
 if (request.getParameter('p')) {
     def node = context.jcr.getNode(request.getParameter('p'))
 //    node.checkout()
