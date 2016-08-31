@@ -1,0 +1,5 @@
+{
+  "title":" - miniki.org",
+  "sling:resourceType":"miniki/page/node",
+  "jcr:primaryType":"nt:unstructured"
+}

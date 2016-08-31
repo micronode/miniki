@@ -1,0 +1,19 @@
+{
+  "title": "Nodes - miniki.org",
+  "sling:resourceType": "miniki/page/list",
+  "jcr:primaryType": "nt:unstructured",
+  "list": {
+    "sling:resourceType": "miniki/block/node-list",
+    "home": {
+      "sling:resourceType":"miniki/block/node/markdown",
+      "title": "miniki.org",
+      "text": "## A platform for collaboration\n Miniki is designed to be a flexible platform for collaboration across teams."
+    },
+    "user-guide": {
+      "sling:resourceType":"miniki/block/node/markdown",
+      "title": "miniki.org - User Guide",
+      "text": "## Concepts\n * Templates\n * History\n * Permissions",
+      "parent": "home"
+    }
+  }
+}

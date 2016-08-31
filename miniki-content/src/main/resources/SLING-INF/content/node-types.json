@@ -1,0 +1,44 @@
+{
+  "title": "Node Types - miniki.org",
+  "sling:resourceType": "miniki/page/list",
+  "jcr:primaryType": "nt:unstructured",
+  "list": {
+    "sling:resourceType": "miniki/block/node-type-list",
+    "markdown": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Markdown",
+      "description": "A standard wiki page supporting markdown syntax",
+      "allowedChildren": ["markdown", "project", "dashboard", "feed", "job"]
+    },
+    "project": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Project",
+      "description": "A project wiki page supporting markdown syntax",
+      "allowedChildren": ["ticket"]
+    },
+    "ticket": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Ticket",
+      "description": "A ticket page supporting markdown syntax",
+      "allowedChildren": []
+    },
+    "dashboard": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Dashboard",
+      "description": "A dashboard page supporting embedded nodes",
+      "allowedChildren": ["markdown", "project", "dashboard", "feed", "job"]
+    },
+    "feed": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Feed",
+      "description": "A feed page",
+      "allowedChildren": []
+    },
+    "job": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Job",
+      "description": "A job page",
+      "allowedChildren": []
+    }
+  }
+}

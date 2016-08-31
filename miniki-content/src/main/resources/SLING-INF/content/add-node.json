@@ -1,0 +1,5 @@
+{
+  "title":"Add node - miniki.org",
+  "sling:resourceType":"miniki/form/add-node",
+  "jcr:primaryType":"nt:unstructured"
+}
