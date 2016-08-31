@@ -1,0 +1,16 @@
+<div class="block-list">
+<%
+    var count = 0;
+    var limit = request.requestPathInfo.suffix ? parseInt(request.requestPathInfo.suffix.substring(1)) : Number.MAX_SAFE_INTEGER;
+
+    for(var i in currentNode) {
+        if (currentNode[i]['sling:resourceType'] != null
+            && currentNode[i]['sling:resourceType'].startsWith("miniki/block/node")) {
+
+            sling.include(currentNode[i].path + ".summary.html");
+
+            if (count >= limit) break;
+        }
+    }
+%>
+</div>

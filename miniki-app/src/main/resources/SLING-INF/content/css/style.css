@@ -1,4 +1,26 @@
+body {
+    padding-top: 50px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+/*
+.starter-template input {
+    margin-top: 50px;
+    font-size: 2em;
+    padding: 10px;
+    border: 10px solid rgba(0,0,0,0.2);
+    border-radius: 15px 25px;
+}
+*/
 
 footer {
     text-align: center;
+}
+
+.miniki-list-nostyle {
+    list-style: none;
+    padding-left: 0;
 }

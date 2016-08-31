@@ -1,7 +1,3 @@
-<%
-    /* hard-code the content type for index page as it may be accessed without an html extension */
-    response.contentType = "text/html"
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,10 +41,18 @@
 
     <% sling.include("header.html" + currentNode.path); %>
 
-    <% sling.include("nodes/list/home.html"); %>
-
+    <div class="row">
+        <div class="col-md-8">
+        <%
+            if (currentNode.list) {
+                var suffix = request.requestPathInfo.suffix ? request.requestPathInfo.suffix : "";
+                sling.include(currentNode + "/list.html" + suffix);
+            }
+        %>
+        </div>
+    </div>
 </div> <!-- /container -->
 
-    <% sling.include("footer.html"); %>
+<% sling.include("footer.html"); %>
 </body>
 </html>

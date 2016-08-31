@@ -1,0 +1,27 @@
+<!-- TODO: read node-type from suffix and get list of allowable children.. -->
+<% var mnode = request.resourceResolver.resolve(request.requestPathInfo.suffix); %>
+<div class="starter-template">
+    <form method="POST" action="/content/miniki/nodes/list/">
+        <div class="input-group">
+            <div class="input-group-btn">
+                <input type="button" name="sling:resourceType" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Markdown <span class="caret"></span></input>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Markdown</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Ticket</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Feed</a></li>
+                    <li><a href="#">Job</a></li>
+                </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="Paste link or type here.." name="title"/>
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="button">Add</button>
+            </div>
+        </div>
+        <input type="hidden" name=":redirect" value="/content/miniki/node.html/content/miniki/nodes/list/*"/>
+        <input type="hidden" name="_charset_" value="UTF-8"/>
+        <input type="hidden" name="sling:resourceType" value="miniki/block/node/markdown"/>
+        <input type="hidden" name="parent" value="<%= mnode.name %>"/>
+    </form>
+</div>

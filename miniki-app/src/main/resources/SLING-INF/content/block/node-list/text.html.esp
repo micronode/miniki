@@ -1,0 +1,15 @@
+<div class="block-list">
+    <ul class="miniki-list-nostyle">
+    <%
+        var parentNode = request.requestPathInfo.suffix ? request.requestPathInfo.suffix.substring(1) : null;
+        for(var i in currentNode) {
+            if (currentNode[i]['sling:resourceType'] != null
+                && currentNode[i]['sling:resourceType'].startsWith("miniki/block/node")
+                && (currentNode[i]['parent'] == parentNode || parentNode == null)) {
+
+                out.print("<li><a href=\"node.html" + currentNode[i] + "\">" + currentNode[i].title + "</a></li>");
+            }
+        }
+    %>
+    </ul>
+</div>
