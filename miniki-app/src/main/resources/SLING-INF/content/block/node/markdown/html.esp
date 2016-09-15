@@ -1,8 +1,16 @@
 <!-- Content.. -->
 <textarea placeholder="Markdown goes here.."><%= currentNode.text %></textarea>
 
-<!-- Add node.. -->
-<% sling.include("/content/miniki/add-node.html/" + currentNode.name); %>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Add node.. -->
+        <% sling.include("/content/miniki/add-node.html/" + currentNode.name); %>
+    </div>
+</div>
 
+<div class="row">
+<div class="col-md-12">
 <!-- Children.. -->
 <% sling.include("/content/miniki/nodes/list.text.html/" + currentNode.name); %>
+</div>
+</div>
