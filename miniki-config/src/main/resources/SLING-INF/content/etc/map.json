@@ -1,0 +1,7 @@
+{
+  "http": {
+    "miniki.org.80": {
+      "sling:redirect": "http://www.miniki.org/"
+    }
+  }
+}

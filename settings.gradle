@@ -1,3 +1,4 @@
 include 'miniki-app'
 include 'miniki-content'
+include 'miniki-config'
 //include 'miniki-api'
