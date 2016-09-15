@@ -1,5 +1,5 @@
 {
-  "title": "Nodes - miniki.org",
+  "title": "Nodes",
   "sling:resourceType": "miniki/page/list",
   "jcr:primaryType": "nt:unstructured",
   "list": {
@@ -13,7 +13,7 @@
       "sling:resourceType":"miniki/block/node/markdown",
       "title": "miniki.org - User Guide",
       "text": "## Concepts\n * Templates\n * History\n * Permissions",
-      "parent": "home"
+      "parentNode": "home"
     }
   }
 }

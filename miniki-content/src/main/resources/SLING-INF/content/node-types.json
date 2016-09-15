@@ -1,5 +1,6 @@
 {
-  "title": "Node Types - miniki.org",
+  "title": "Node Templates",
+  "descripton": "Templates for the available miniki node types",
   "sling:resourceType": "miniki/page/list",
   "jcr:primaryType": "nt:unstructured",
   "list": {
@@ -8,7 +9,7 @@
       "sling:resourceType":"miniki/block/node-type",
       "title": "Markdown",
       "description": "A standard wiki page supporting markdown syntax",
-      "allowedChildren": ["markdown", "project", "dashboard", "feed", "job"]
+      "allowedChildren": ["markdown", "project", "dashboard", "feed", "link", "job"]
     },
     "project": {
       "sling:resourceType":"miniki/block/node-type",
@@ -32,6 +33,12 @@
       "sling:resourceType":"miniki/block/node-type",
       "title": "Feed",
       "description": "A feed page",
+      "allowedChildren": []
+    },
+    "link": {
+      "sling:resourceType":"miniki/block/node-type",
+      "title": "Link",
+      "description": "A link page",
       "allowedChildren": []
     },
     "job": {
