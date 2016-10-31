@@ -1,0 +1,23 @@
+{
+  "http": {
+    "miniki.org.80": {
+      "sling:redirect": "http://www.miniki.org/"
+    },
+    "any_miniki.org.80": {
+      "sling:match": ".+\.miniki\.org\.80",
+      "sling:internalRedirect": "/content/miniki",
+      "apps": {
+        "sling:internalRedirect": "/apps"
+      },
+      "libs": {
+        "sling:internalRedirect": "/libs"
+      },
+      "system": {
+        "sling:internalRedirect": "/system"
+      },
+      "wp": {
+        "sling:internalRedirect": "/content/wp"
+      }
+    }
+  }
+}
