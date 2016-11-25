@@ -9,6 +9,7 @@ COPY gradle gradle
 
 COPY miniki-app miniki-app
 COPY miniki-content miniki-content
+COPY miniki-config miniki-config
 
 ENTRYPOINT ["/app/gradlew"]
 
